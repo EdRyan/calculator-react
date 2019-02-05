@@ -1,12 +1,12 @@
 import React from 'react';
+import Button from './Button';
 
 const NumberButton = props => {
 
     return (
-        <button className="ui button fluid"
-                onClick={() => props.onNumberPressed(props.number)}>
+        <Button onClick={() => props.onNumberPressed(props.number)}>
             {props.number}
-        </button>
+        </Button>
     );
 };
 

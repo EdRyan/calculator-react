@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import NumberButton from './NumberButton';
 import OperatorButton from './OperatorButton';
+import Button from './Button';
 
 const DEFAULT_STATE = { currentTotal: 0, currentInput: '', lastInput: '', operation: null };
 
@@ -89,6 +90,44 @@ class App extends React.Component {
         this.setState(this.doEquals());
     };
 
+    onBackspacePressed = () => {
+        this.setState({ currentInput : this.state.currentInput.slice(0,-1) });
+    }
+
+    handleKeyDown = event => {
+        const key = event.key;
+
+        if (key.match(/^\d$/)) {
+            this.onNumberPressed(key);
+        } else {
+            switch (key) {
+                case '+':
+                    this.onOperatorPressed('add');
+                    return;
+                case '-':
+                    this.onOperatorPressed('subtract');
+                    return;
+                case '/':
+                    this.onOperatorPressed('divide');
+                    return;
+                case '*':
+                    this.onOperatorPressed('multiply');
+                    return;
+                case 'Enter':
+                case '=':
+                    this.onEqualsPressed();
+                    return;
+                case 'Backspace':
+                    this.onBackspacePressed();
+                    return;
+            }
+        }
+    };
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyDown);
+    }
+
     render() {
         return (
             <div className="app ui container" style={{marginTop:'10px'}}>
@@ -101,10 +140,10 @@ class App extends React.Component {
                         </div>
                         <div className="row calc-buttons">
                             <div className="four wide column">
-                                <button className="ui button fluid" onClick={this.clearEverything}>C</button>
+                                <Button onClick={this.clearEverything}>C</Button>
                             </div>
                             <div className="four wide column">
-                                <button className="ui button fluid" onClick={this.clearCurrentInput}>CE</button>
+                                <Button onClick={this.clearCurrentInput}>CE</Button>
                             </div>
                             <div className="four wide column">
                                 &nbsp;

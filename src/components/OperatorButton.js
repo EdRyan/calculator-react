@@ -5,6 +5,8 @@ import {
     faDivide, faAsterisk, faPlus, faEquals, faMinus
 } from '@fortawesome/free-solid-svg-icons';
 
+import Button from './Button';
+
 library.add(faDivide, faAsterisk, faPlus, faEquals, faMinus);
 
 const OperatorButton = props => {
@@ -25,10 +27,9 @@ const OperatorButton = props => {
     };
 
     return (
-        <button className="ui button fluid"
-                onClick={() => props.onOperatorPressed(props.operator)}>
+        <Button onClick={() => props.onOperatorPressed(props.operator)}>
             <FontAwesomeIcon icon={getIconName(props.operator)}/>
-        </button>
+        </Button>
     );
 };
 
