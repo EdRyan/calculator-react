@@ -1,0 +1,13 @@
+.app .card .grid row.calc-buttons .column {
+    /*padding: 5px;*/
+}
+
+.app .card .grid row.calc-buttons .column button {
+    width: 100%;
+    height: 100%;
+}
+
+.app .total {
+    padding: 10px 0;
+    font-size: 3em;
+}
