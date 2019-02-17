@@ -19,6 +19,8 @@ class App extends React.Component {
     state = DEFAULT_STATE;
 
     onNumberPressed = number => {
+        if (this.state.currentInput.length === 16) return;
+
         this.setState({currentInput: this.state.currentInput.concat(number), lastButtonPressed: number});
     };
 
