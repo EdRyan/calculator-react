@@ -4,7 +4,7 @@ import Button from './Button';
 const NumberButton = props => {
 
     return (
-        <Button onClick={() => props.onNumberPressed(props.number)}>
+        <Button name={props.number} onClick={() => props.onNumberPressed(props.number)}>
             {props.number}
         </Button>
     );

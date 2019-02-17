@@ -165,10 +165,10 @@ class App extends React.Component {
                         </div>
                         <div className="row calc-buttons">
                             <div className="four wide column">
-                                <Button onClick={this.clearEverything}>C</Button>
+                                <Button name="c" onClick={this.clearEverything}>C</Button>
                             </div>
                             <div className="four wide column">
-                                <Button onClick={this.clearCurrentInput}>CE</Button>
+                                <Button name="ce" onClick={this.clearCurrentInput}>CE</Button>
                             </div>
                             <div className="four wide column">
                                 &nbsp;

@@ -10,7 +10,7 @@ const Button = props => {
     };
 
     return (
-        <button className="ui button fluid"
+        <button {...props} className="ui button fluid"
                 onClick={e => onClick(e, props.onClick)}>
             {props.children}
         </button>

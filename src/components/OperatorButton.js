@@ -4,7 +4,7 @@ import OperatorIcon from './OperatorIcon';
 
 const OperatorButton = props => {
     return (
-        <Button onClick={() => props.onOperatorPressed(props.operator)}>
+        <Button name={props.operator} onClick={() => props.onOperatorPressed(props.operator)}>
             <OperatorIcon operator={props.operator}/>
         </Button>
     );
