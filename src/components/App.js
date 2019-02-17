@@ -4,15 +4,22 @@ import './App.css';
 import NumberButton from './NumberButton';
 import OperatorButton from './OperatorButton';
 import Button from './Button';
+import OperatorIcon from './OperatorIcon';
 
-const DEFAULT_STATE = { currentTotal: 0, currentInput: '', lastInput: '', operation: null };
+const DEFAULT_STATE = {
+    currentTotal: 0,
+    currentInput: '',
+    lastInput: '',
+    operation: null,
+    lastButtonPressed: ''
+};
 
 class App extends React.Component {
 
     state = DEFAULT_STATE;
 
     onNumberPressed = number => {
-        this.setState({currentInput: this.state.currentInput.concat(number)});
+        this.setState({currentInput: this.state.currentInput.concat(number), lastButtonPressed: number});
     };
 
     clearEverything = () => {
@@ -36,6 +43,7 @@ class App extends React.Component {
         newState.lastInput = this.state.currentTotal;
 
         newState.operation = operation;
+        newState.lastButtonPressed = operation;
 
         this.setState(newState);
     };
@@ -71,7 +79,8 @@ class App extends React.Component {
             return {
                 currentTotal: newTotal,
                 currentInput: '',
-                lastInput: currentInput
+                lastInput: currentInput,
+                lastButtonPressed: 'equals'
             };
         }
 
@@ -82,7 +91,8 @@ class App extends React.Component {
         return {
             currentTotal: newTotal,
             currentInput: '',
-            lastInput: currentInput || this.state.lastInput
+            lastInput: currentInput || this.state.lastInput,
+            lastButtonPressed: 'equals'
         }
     };
 
@@ -92,7 +102,8 @@ class App extends React.Component {
 
     onBackspacePressed = () => {
         this.setState({ currentInput : this.state.currentInput.slice(0,-1) });
-    }
+        //TODO set lastButtonPressed. not critical right now cause mainly used for equals tracking
+    };
 
     handleKeyDown = event => {
         const key = event.key;
@@ -128,11 +139,25 @@ class App extends React.Component {
         document.addEventListener("keydown", this.handleKeyDown);
     }
 
+    renderPreviousInput() {
+        if (this.state.operation && this.state.lastButtonPressed !== '' && this.state.lastButtonPressed !== 'equals') {
+            return (
+                <div>{this.state.currentTotal} <OperatorIcon size="xs" operator={this.state.operation}/></div>
+            );
+        }
+        return <div>&nbsp;</div>;
+    }
+
     render() {
         return (
             <div className="app ui container" style={{marginTop:'10px'}}>
                 <div className="ui card">
                     <div className="ui /*celled*/ grid center aligned">
+                        <div className="row">
+                            <div className="sixteen wide column right aligned">
+                                {this.renderPreviousInput()}
+                            </div>
+                        </div>
                         <div className="row">
                             <div className="sixteen wide column right aligned total">
                                 {this.state.currentInput || this.state.currentTotal}
