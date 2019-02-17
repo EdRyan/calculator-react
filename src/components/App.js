@@ -40,7 +40,7 @@ class App extends React.Component {
             Object.assign(newState, this.doEquals());
         }
 
-        newState.lastInput = this.state.currentTotal;
+        newState.lastInput = newState.currentTotal;
 
         newState.operation = operation;
         newState.lastButtonPressed = operation;
