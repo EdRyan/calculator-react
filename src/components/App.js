@@ -144,7 +144,10 @@ class App extends React.Component {
     renderPreviousInput() {
         if (this.state.operation && this.state.lastButtonPressed !== '' && this.state.lastButtonPressed !== 'equals') {
             return (
-                <div>{this.state.currentTotal} <OperatorIcon size="xs" operator={this.state.operation}/></div>
+                <div className="current-calculation">
+                    <div className="current-operator"><OperatorIcon size="xs" operator={this.state.operation}/></div>
+                    <div className="current-total">{this.state.currentTotal}</div>
+                </div>
             );
         }
         return <div>&nbsp;</div>;
@@ -153,18 +156,16 @@ class App extends React.Component {
     render() {
         return (
             <div className="app ui container" style={{marginTop:'10px'}}>
-                <div className="ui card">
-                    <div className="ui /*celled*/ grid center aligned">
-                        <div className="row">
-                            <div className="sixteen wide column right aligned">
-                                {this.renderPreviousInput()}
-                            </div>
+                <div className="ui calculator">
+                    <div className="previous">
+                        <div>
+                            {this.renderPreviousInput()}
                         </div>
-                        <div className="row">
-                            <div className="sixteen wide column right aligned total">
-                                {this.state.currentInput || this.state.currentTotal}
-                            </div>
-                        </div>
+                    </div>
+                    <div className="total">
+                        {this.state.currentInput || this.state.currentTotal}
+                    </div>
+                    <div className="ui grid center aligned">
                         <div className="row calc-buttons">
                             <div className="four wide column">
                                 <Button name="c" onClick={this.clearEverything}>C</Button>

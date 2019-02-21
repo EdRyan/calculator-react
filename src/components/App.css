@@ -1,13 +1,37 @@
-.app .card .grid row.calc-buttons .column {
-    /*padding: 5px;*/
+.app .calculator {
+    max-width: 50%;
+    margin: 10px auto;
+    border: 2px solid rgb(224, 225, 226);
+    border-radius: 5px;
+    padding: 5px;
 }
 
-.app .card .grid row.calc-buttons .column button {
+.app .previous {
+    height: 20px;
     width: 100%;
-    height: 100%;
+    background-color: rgb(224,225,226);
+    padding-right: 5px;
+}
+
+.current-total {
+    float: right;
+    font-size: 16px;
+}
+
+.current-operator {
+    float: right;
+}
+
+.app .previous svg {
+    margin-left: 5px;
 }
 
 .app .total {
-    padding: 10px 0;
-    font-size: 3em;
+    clear: both;
+    padding: 5px;
+    font-size: 26px;
+    width: 100%;
+    background-color: rgb(224,225,226);
+    margin-bottom: 20px;
+    text-align: right;
 }
